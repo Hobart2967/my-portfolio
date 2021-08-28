@@ -1,0 +1,7 @@
+@import "../includes";
+
+:root {
+  @each $name, $colorCode in $colors {
+    --#{$name}: #{$colorCode};
+  }
+}

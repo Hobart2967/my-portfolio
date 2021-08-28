@@ -1,0 +1,9 @@
+{
+  "name": "@hobart2967/my-portfolio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@angular/cli": "^12.2.3"
+  }
+}

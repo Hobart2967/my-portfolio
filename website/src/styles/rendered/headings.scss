@@ -1,0 +1,5 @@
+@import "../includes";
+
+h1 {
+  @extend %h1;
+}
