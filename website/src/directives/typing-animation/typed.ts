@@ -32,10 +32,14 @@ export class Typed {
           return this.restart()
       }
 
-
+      if (this.options.noCursorStartDelay){
+        this.insertCursor();
+      }
 
       this.timeout = setTimeout(() => {
-        this.insertCursor()
+        if (!this.options.noCursorStartDelay) {
+          this.insertCursor()
+        }
         this.typewrite()
       }, this.options.startDelay)
   }

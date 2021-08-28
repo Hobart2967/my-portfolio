@@ -16,6 +16,7 @@ export class TypingAnimationDirective implements OnInit, OnChanges, AfterViewIni
   @Input('startDelay') public startDelay: number = 0
   @Input('condition') public condition: boolean = true
   @Input('hideCursorOnComplete') public hideCursorOnComplete: boolean = false
+  @Input('noCursorStartDelay') public noCursorStartDelay: boolean = false
   @Input('hideCursorDelay') public hideCursorDelay: number = 0;
 
   public get text(): string {
@@ -95,6 +96,7 @@ export class TypingAnimationDirective implements OnInit, OnChanges, AfterViewIni
           condition: this.condition,
           hideCursorOnComplete: this.hideCursorOnComplete,
           hideCursorDelay: this.hideCursorDelay,
+          noCursorStartDelay: this.noCursorStartDelay,
           onComplete: () => {
               this.complete.emit(null)
               this.typingLock = false
