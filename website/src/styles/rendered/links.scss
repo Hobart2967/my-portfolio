@@ -1,0 +1,7 @@
+a, .text-link {
+  &,
+  &:visited,
+  &:active {
+    color: var(--color-button-background);
+  }
+}
