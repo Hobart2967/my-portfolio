@@ -1,0 +1,12 @@
+portfolio-wrapper {
+  display: flex;
+  min-height: 100vh;
+
+  > :first-child {
+    width: 128px;
+  }
+
+  main {
+    flex: 1 1;
+  }
+}

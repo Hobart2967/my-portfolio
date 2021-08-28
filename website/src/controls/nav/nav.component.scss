@@ -1,0 +1,46 @@
+nav {
+  width: 100%;
+  border-right: 1px solid #3a3a3a;
+  display: block;
+  background: #2a2a2a;
+
+  .nav {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    height: 100%;
+
+    &__item {
+
+      width: 100%;
+      text-align: center;
+      padding: 16px 0;
+      margin: 8px 0;
+      transition: background-color ease-in-out .3s;
+
+      &:hover {
+        background-color: #3a3a3a;
+      }
+
+      &__text {
+        padding-top: 4px;
+      }
+      &__icon svg {
+        fill: #7a7a7a;
+      }
+
+      &--active, &:hover {
+        cursor: pointer;
+        color: var(--color-button-background);
+        transition: color ease-in-out .3s;
+
+        .nav__item__icon svg {
+          fill: var(--color-button-background);
+          transition: fill ease-in-out .3s;
+
+        }
+      }
+    }
+  }
+
+}
