@@ -10,6 +10,13 @@ nav {
     justify-content: center;
     height: 100%;
 
+    a {
+      color: inherit;
+      font-weight: 300;
+      &:hover {
+        text-decoration: none;
+      }
+    }
     &__item {
 
       width: 100%;
@@ -20,6 +27,7 @@ nav {
 
       &:hover {
         background-color: #3a3a3a;
+
       }
 
       &__text {

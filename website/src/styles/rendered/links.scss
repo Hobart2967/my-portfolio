@@ -3,5 +3,11 @@ a, .text-link {
   &:visited,
   &:active {
     color: var(--color-button-background);
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 }
