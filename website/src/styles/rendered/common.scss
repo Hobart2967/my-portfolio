@@ -5,8 +5,11 @@ body {
   margin: 0;
   font-family: 'Advent Pro', sans-serif;
   font-weight: 300;
+  letter-spacing: 1px;
 }
 
 p {
   margin: 16px 0;
 }
+
+.d-flex { display: flex; }

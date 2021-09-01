@@ -1,4 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { stations } from '../../configuration/stations';
+import { CareerStation } from '../../models/career-station.interface';
 
 @Component({
   selector: 'about-me',
@@ -7,4 +9,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AboutMeComponent {
+  //#region Properties
+  public get stations(): CareerStation[] {
+    return stations;
+  }
+  //#endregion
 }
