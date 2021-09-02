@@ -38,7 +38,7 @@ about-me {
           position: relative;
           display: inline-block;
           background: rgb(51 51 51);
-          border: 1px dashed rgb(29 148 29 / 80%);
+          border: 1px solid rgb(16 84 16 / 80%);
           animation: station-fade-in ease-in-out 1s;
           animation-fill-mode: forwards;
           animation-iteration-count: 1;
@@ -76,7 +76,7 @@ about-me {
             display: block;
             position: absolute;
             height: 1px;
-            border: 2px dashed rgb(29 148 29 / 80%);
+            border: 2px dashed rgb(16 84 16 / 80%);
             width: 100%;
             overflow: hidden;
             clip: rect(3px, 100vw, 1vw, 0px);
