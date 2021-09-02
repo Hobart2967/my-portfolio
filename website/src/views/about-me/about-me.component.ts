@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { stations } from '../../configuration/stations';
 import { CareerStation } from '../../models/career-station.interface';
 

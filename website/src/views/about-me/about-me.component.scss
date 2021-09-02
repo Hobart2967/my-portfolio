@@ -34,15 +34,31 @@ about-me {
         z-index: 101;
 
         &__station {
-          padding: 8px;
-          position: relative;
+          position: absolute;
           display: inline-block;
-          background: rgb(51 51 51);
-          border: 1px solid rgb(16 84 16 / 80%);
-          animation: station-fade-in ease-in-out 1s;
-          animation-fill-mode: forwards;
-          animation-iteration-count: 1;
-          opacity: 0;
+
+          &--left {
+            .career__path__info__station__details {
+              transform: translateX(calc(-100% - 30px));
+              margin: 0;
+            }
+          }
+          //opacity: 0;
+
+          &__details {
+            margin: 0px 30px;
+            padding: 8px;
+            background: #333333;
+            border: 1px solid rgba(16, 84, 16, 0.8);
+            opacity: 0.6;
+            transform: translateY(calc(-50% - 16px));
+
+            &:hover {
+              animation: station-fade-in ease-in-out 1s;
+              animation-fill-mode: forwards;
+              animation-iteration-count: 1;
+            }
+          }
 
           @keyframes station-fade-in{
             0%{
@@ -62,77 +78,28 @@ about-me {
           &:before {
             display: block;
             content: " ";
-            position: absolute;
+            position: relative;
             height: 12px;
             width: 12px;
             border-radius: 50%;
             background: rgba(29, 148, 29, 1);
             z-index: 103;
             border: 2px solid rgb(216, 216, 216);
+
+            transform: translateX(-50%)
+                       translateY(-50%);
           }
 
           &:after {
             content: ' ';
             display: block;
-            position: absolute;
+            position: relative;
             height: 1px;
             border: 2px dashed rgb(16 84 16 / 80%);
             width: 100%;
             overflow: hidden;
             clip: rect(3px, 100vw, 1vw, 0px);
-          }
-
-          &:nth-child(1) {
-            left: 290px;
-            top: 30px;
-            animation-delay: 5.95s;
-
-            &:before {
-              bottom: -21px;
-              left: -37px;
-            }
-            &:after {
-              left: -30px;
-              bottom: -8px;
-              transform: rotate(-25deg);
-              max-width: 24px;
-            }
-          }
-
-          &:nth-child(2) {
-            top: 115px;
-            left: 119px;
-            animation-delay: 7.15s;
-
-            &:before {
-              left: -166px;
-              bottom: calc(100% - 28px);
-            }
-
-            &:after {
-              left: -153px;
-              bottom: 30px;
-              transform: rotate(13deg);
-              width: 147px;
-            }
-          }
-
-          &:nth-child(3) {
-            top: 85px;
-            right: 0;
-            animation-delay: 11s;
-
-            &:before {
-              left: calc(100% + 100px);
-              bottom: 4px;
-            }
-
-            &:after {
-              left: calc(100% + 3px);
-              bottom: 24px;
-              transform: rotate(13deg);
-              width: 101px;
-            }
+            display: none;
           }
         }
       }
@@ -142,18 +109,23 @@ about-me {
         z-index: 100;
       }
 
-      > svg {
-        height: 830px;
+      > div{
+        position: relative;
+        display: inline-block;
 
-        > path {
-          $careerPathLength: 3805.643310546875;
-          stroke-dasharray: $careerPathLength;
-          stroke-dashoffset: $careerPathLength;
-          animation: drawcareerPath 40s linear forwards;
-          animation-iteration-count: 1;
+        > svg {
+          height: 830px;
 
-          @keyframes drawcareerPath {
-            to { stroke-dashoffset: 0; }
+          > path {
+            $careerPathLength: 3805.643310546875;
+            stroke-dasharray: $careerPathLength;
+            stroke-dashoffset: $careerPathLength;
+            animation: drawcareerPath 40s linear forwards;
+            animation-iteration-count: 1;
+
+            @keyframes drawcareerPath {
+              to { stroke-dashoffset: 0; }
+            }
           }
         }
       }
