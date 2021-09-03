@@ -3,7 +3,7 @@ about-me {
 
   .column {
     flex: 1 1 auto;
-
+    padding: 16px;
     .row {
       padding: 0 16px;
     }
@@ -11,7 +11,10 @@ about-me {
 
   .column:nth-child(1) {
     max-width: 60%;
-    padding: 16px;
+  }
+
+  .column:nth-child(2) {
+    padding: 16px 0;
   }
 
 
@@ -36,6 +39,8 @@ about-me {
         &__station {
           position: absolute;
           display: inline-block;
+          margin-left: -7px;
+          margin-top: -7px;
 
           &--left {
             .career__path__info__station__details {
@@ -49,34 +54,59 @@ about-me {
             margin: 0px 30px;
             padding: 8px;
             background: #333333;
-            border: 1px solid rgba(16, 84, 16, 0.8);
-            opacity: 0.6;
+            border: 2px solid rgba(16, 84, 16, 0.8);
             transform: translateY(calc(-50% - 16px));
+            text-align: left;
 
-            &:hover {
-              animation: station-fade-in ease-in-out 1s;
+            position: relative;
+
+            opacity: 0;
+
+            &--visible {
+              animation: jump-in ease-in-out 0.4s;
               animation-fill-mode: forwards;
               animation-iteration-count: 1;
             }
           }
 
-          @keyframes station-fade-in{
+
+          @keyframes jump-in{
             0%{
+              transform: scale(0);
               opacity: 0.3;
             }
-            20% {
-              opacity: 0.7;
-            }
             50%{
+              transform: scale(1.5);
               opacity: 1;
             }
             100%{
+              transform: scale(1);
               opacity: 1;
             }
           }
 
-          &:before {
+
+          .station__job__meta {
+            margin: 0px 30px;
+            padding: 8px;
+            background: #333333;
+            border: 2px solid rgba(16, 84, 16, 0.8);
+            transform: translateY(calc(-50% - 16px));
+            text-align: left;
+            position: relative;
+            border-top: 0;
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            z-index: 2000;
+            pointer-events: none;
+            margin-top: -1px;
+
+
+          }
+
+          .bullet {
             display: block;
+            cursor: pointer;
             content: " ";
             position: relative;
             height: 12px;
@@ -88,6 +118,31 @@ about-me {
 
             transform: translateX(-50%)
                        translateY(-50%);
+            opacity: 0;
+
+            &--visible {
+              animation: jump-in ease-in-out 0.4s;
+              animation-fill-mode: forwards;
+              animation-iteration-count: 1;
+            }
+
+            &::before {
+              content: ' ';
+              display: block;
+              border-radius: 50%;
+              border: 2px solid transparent;
+              height: 8px;
+              width: 8px;
+            }
+
+            &:hover {
+              &:before {
+                border-color: rgb(216, 216, 216);;
+              }
+              ~ .station__job__meta{
+                opacity: 1;
+              }
+            }
           }
 
           &:after {
@@ -117,7 +172,7 @@ about-me {
           height: 830px;
 
           > path {
-            $careerPathLength: 3805.643310546875;
+            $careerPathLength: 3543.529052734375;
             stroke-dasharray: $careerPathLength;
             stroke-dashoffset: $careerPathLength;
             animation: drawcareerPath 40s linear forwards;

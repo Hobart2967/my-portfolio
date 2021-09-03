@@ -3,8 +3,7 @@ import { CareerStation } from '../models/career-station.interface';
 export const stations: CareerStation[] = [{
   companyName: 'EA Games/Bright Future GmbH',
   job: 'Trainee Developer/Quality Assurance',
-  atPath: 10 / 100,
-  orientation: 'left',
+  atPath: 14.5 / 100,
   start: {
     month: 6,
     year: 2006,
@@ -16,7 +15,7 @@ export const stations: CareerStation[] = [{
 }, {
   companyName: 'Mauser Group',
   job: 'Trainee IT-Administrator',
-  atPath: 15 / 100,
+  atPath: 19 / 100,
   start: {
     month: 9,
     year: 2007,
@@ -27,7 +26,7 @@ export const stations: CareerStation[] = [{
   }
 }, {
   companyName: 'Grey Computer Cologne',
-  atPath: 26 / 100,
+  atPath: 24 / 100,
   job: 'PC Manufacturing',
   start: {
     month: 1,
@@ -40,8 +39,7 @@ export const stations: CareerStation[] = [{
 }, {
   companyName: 'Serviceware SE',
   job: 'Apprenticeship: Computer Science Expert',
-  atPath: 32.8 / 100,
-  orientation: 'left',
+  atPath: 35.3 / 100,
   start: {
     month: 7,
     year: 2011,
@@ -53,7 +51,7 @@ export const stations: CareerStation[] = [{
 }, {
   companyName: 'Serviceware SE',
   job: 'Work Student: Software Engineer',
-  atPath: 38 / 100,
+  atPath: 49 / 100,
   start: {
     month: 2,
     year: 2011,
@@ -65,8 +63,7 @@ export const stations: CareerStation[] = [{
 }, {
   companyName: 'EUFH Bruehl',
   job: 'Bachelor Degree: Business Information Systems',
-  atPath: 45 / 100,
-  orientation: 'left',
+  atPath: 57 / 100,
   school: true,
   start: {
     month: 10,
@@ -79,7 +76,7 @@ export const stations: CareerStation[] = [{
 }, {
   companyName: 'Serviceware SE',
   job: 'Full-Stack Software Engineer',
-  atPath: 58 / 100,
+  atPath: 65.3 / 100,
   start: {
     month: 10,
     year: 2014,
@@ -91,8 +88,7 @@ export const stations: CareerStation[] = [{
 }, {
   companyName: 'Trusted Shops GmbH',
   job: 'Senior Full-Stack Software Engineer',
-  orientation: 'left',
-  atPath: 80 / 100,
+  atPath: 73.5 / 100,
   start: {
     month: 2,
     year: 2018,
