@@ -1,6 +1,8 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { CareerStation } from '../../../models/career-station.interface';
-import { OverlayService } from '../../../services/overlay-service';
+import { ModalService } from '../../../services/modal.service';
+import { OverlayService } from '../../../services/overlay.service';
+import { CareerStationInfoComponent } from '../career-station-info/career-station-info.component';
 
 @Component({
   selector: 'career-path-station',
@@ -40,12 +42,14 @@ export class CareerPathStation {
   //#endregion
 
   //#region Ctor
-  public constructor(private readonly _overlayService: OverlayService) { }
+  public constructor(private readonly _modalService: ModalService) { }
   //#endregion
 
   //#region Public Methods
   public openStationInfoModal() {
-    this._overlayService.showOverlay();
+    this._modalService.openModal({
+      modalContent: CareerStationInfoComponent
+    });
   }
   //#endregion
 }
