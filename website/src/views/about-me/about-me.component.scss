@@ -23,7 +23,7 @@ $componentName: 'about-me';
       opacity: 0;
       @for $i from 1 to 4 {
         &:nth-child(#{$i*2}) {
-          animation-delay: #{0.8s * $i + ($i - 1) * pow(0.90, $i)};
+          animation-delay: #{0.3s * $i + ($i - 1) * pow(0.40, $i)};
         }
       }
 
@@ -84,7 +84,7 @@ $componentName: 'about-me';
             $careerPathLength: 3543.529052734375;
             stroke-dasharray: $careerPathLength;
             stroke-dashoffset: $careerPathLength;
-            animation: #{$componentName}__drawcareerPath 10s linear forwards;
+            animation: #{$componentName}__drawcareerPath 2s linear forwards;
             animation-iteration-count: 1;
 
             @keyframes #{$componentName}__drawcareerPath {
