@@ -25,6 +25,11 @@ home {
       animation-iteration-count: 1;
       animation-delay: 5s;
       opacity: 0;
+
+      &.--force-visibility {
+        animation: none;
+        opacity: 1;
+      }
     }
 
     @keyframes jump-in{

@@ -1,12 +1,12 @@
 <div class="headline">
-  <span [typeSpeed]="10" [noCursorStartDelay]="true" [startDelay]="1000" [hideCursorOnComplete]="true" [hideCursorDelay]="500" typingAnimation>Hi!&nbsp;</span><br>
-  <span [typeSpeed]="20" [startDelay]="2800" [hideCursorOnComplete]="true" [hideCursorDelay]="2000" typingAnimation>I am Marco Klein.</span><br>
+  <span [typeSpeed]="wasOpened ? 0 : 10" [noCursorStartDelay]="true" [startDelay]="1000" [hideCursorOnComplete]="true" [hideCursorDelay]="500" typingAnimation>Hi!&nbsp;</span><br>
+  <span [typeSpeed]="wasOpened ? 0 : 20" [startDelay]="2800" [hideCursorOnComplete]="true" [hideCursorDelay]="2000" typingAnimation>I am Marco Klein.</span><br>
 </div>
 <div class="profile-image">
-  <img src="./assets/images/me.png" />
+  <img src="./assets/images/me.png" [ngClass]="{'--force-visibility': wasOpened }" />
 </div>
 <div class="sub-headline">
-  <span [typeSpeed]="20" [startDelay]="6000" [hideCursorOnComplete]="true" [hideCursorDelay]="0" typingAnimation>Your Full-Stack Software Engineer.</span>
+  <span [typeSpeed]="wasOpened ? 0 : 10" [startDelay]="6000" [hideCursorOnComplete]="true" [hideCursorDelay]="0" typingAnimation>Your Full-Stack Software Engineer.</span>
 </div>
 <div class="links">
   <!-- TODO: Change this to skills-->
