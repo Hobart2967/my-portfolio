@@ -20,14 +20,18 @@ export class OverlayService {
     this._overlayActive.next(options);
   }
 
-  public hideOverlay(component: BaseComponent): void {
+  public hideOverlay(component: BaseComponent, destructionOperation?: Promise<void>): void {
     const index = this._registeredOverlayItems.findIndex(ref => ref.instance === component);
     if (index < 0) {
       return;
     }
 
     const componentRef = this._registeredOverlayItems[index];
-    componentRef.destroy();
+    if(destructionOperation) {
+      destructionOperation.then(() => componentRef.destroy());
+    } else {
+      componentRef.destroy();
+    }
 
     this._registeredOverlayItems.splice(index, 1);
     if (this._registeredOverlayItems.length === 0) {

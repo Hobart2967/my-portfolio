@@ -1,5 +1,5 @@
 .overlay-container__content {
-  transition: filter 0.3s;
+  transition: filter 0.1s;
 
   &--overlay-active {
     filter: blur(3px);

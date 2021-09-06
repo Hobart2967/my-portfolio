@@ -19,7 +19,7 @@ export class ModalService {
   }
 
   public closeModal(modal: ModalComponent) {
-    this._overlayService.hideOverlay(modal);
+    this._overlayService.hideOverlay(modal, modal.hidden);
   }
   //#endregion
 }

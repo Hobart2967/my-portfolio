@@ -1,14 +1,18 @@
 portfolio-wrapper {
   display: flex;
   min-height: 100vh;
+  .portfolio-wrapper__container {
+    width: 100%;
 
-  .overlay-container__wrapper--overlay-active main {
-    pointer-events: none;
-  }
-  main {
-    flex: 1 1;
-    margin-left: 128px;
-    height: 100vh;
-    overflow: auto;
+    .overlay-container__wrapper--overlay-active main {
+      pointer-events: none;
+    }
+
+    main {
+      flex: 1 1;
+      margin-left: 128px;
+      height: 100vh;
+      overflow: auto;
+    }
   }
 }

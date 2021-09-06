@@ -1,3 +1,18 @@
 <div>
-  Career Station
+  <h2>
+    <span>@</span>
+    <span [innerText]="station.companyName"></span>
+  </h2>
+  <div class="station__job__meta">
+    <div [innerText]="station.companyName" class="station__company"></div>
+    <div class="station__time-span">
+      <span [innerText]="station.start.month.toString().padStart(2, '0')"></span>
+      <span>/</span>
+      <span [innerText]="station.start.year"></span>
+      <span> - </span>
+      <span [innerText]="station.end.month.toString().padStart(2, '0')"></span>
+      <span>/</span>
+      <span [innerText]="station.end.year"></span>
+    </div>
+  </div>
 </div>

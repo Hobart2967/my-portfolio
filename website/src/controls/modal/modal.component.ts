@@ -35,6 +35,11 @@ export class ModalComponent extends BaseComponent implements OverlayHostedContro
     this._isHiding = v;
   }
 
+  private _hidden: Promise<void>;
+  public get hidden(): Promise<void> {
+    return this._hidden;
+  }
+
   private _options: ReplaySubject<ModalOptions<BaseComponent>> = new ReplaySubject();
   @Input()
   public get options$(): Observable<ModalOptions<BaseComponent>> {
@@ -69,6 +74,9 @@ export class ModalComponent extends BaseComponent implements OverlayHostedContro
         .subscribe(() => this.closeModal()));
 
     this._content = await this.dynamicContent.add(options.modalContent);
+    for (const key in (options.data || {})) {
+      (this.content.instance as any)[key] = options.data[key];
+    }
   }
 
   public async closeModal(): Promise<void> {
@@ -77,7 +85,7 @@ export class ModalComponent extends BaseComponent implements OverlayHostedContro
     }
 
     this.isHiding = true;
-    await new Promise<void>(resolve => this._document.defaultView.setTimeout(() => resolve(), 900));
+    this._hidden = new Promise<void>(resolve => this._document.defaultView.setTimeout(() => resolve(), 900));
 
     this._modalService.closeModal(this);
   }

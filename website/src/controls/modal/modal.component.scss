@@ -18,16 +18,16 @@ modal {
 
       @keyframes modal__backdrop__fadeIn {
         0% { opacity: 0; }
-        100% { opacity: 0.5; }
+        100% { opacity: 0.8; }
       }
 
 
 
       &--hiding {
         animation: modal__backdrop__fadeOut .3s ease-in-out .3s 1 forwards;
-        opacity: 0.5;
+        opacity: 0.8;
         @keyframes modal__backdrop__fadeOut {
-          0% { opacity: 0.5; }
+          0% { opacity: 0.8; }
           100% { opacity: 0; }
         }
       }
@@ -48,7 +48,6 @@ modal {
       padding: 16px;
 
       animation: modal__window__fadeIn .5s ease-in-out .2s 1 forwards;
-
       @keyframes modal__window__fadeIn {
         0% {
           opacity: 0;
@@ -64,6 +63,17 @@ modal {
         }
       }
 
+      &__title {
+        display: flex;
+        &__text {
+          flex: 1 1 auto;
+        }
+
+        &__close svg > path {
+          cursor: pointer;
+          fill: #fff;
+        }
+      }
       &--hiding {
         animation: modal__window__fadeOut .5s ease-in-out 0s 1 forwards;
         @keyframes modal__window__fadeOut {
