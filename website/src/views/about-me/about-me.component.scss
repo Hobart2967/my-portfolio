@@ -1,4 +1,5 @@
-about-me {
+$componentName: 'about-me';
+#{$componentName} {
   display: block;
 
   .column {
@@ -35,144 +36,6 @@ about-me {
 
       &__info {
         z-index: 101;
-
-        &__station {
-          position: absolute;
-          display: inline-block;
-          margin-left: -7px;
-          margin-top: -7px;
-
-          &--left {
-            .career__path__info__station__details {
-              transform: translateX(calc(-100% - 30px));
-              margin: 0;
-            }
-          }
-          //opacity: 0;
-
-          &__details {
-            margin: 0px 30px;
-            padding: 8px;
-            background: #333333;
-            border: 2px solid rgba(16, 84, 16, 0.8);
-            text-align: left;
-
-            position: relative;
-
-            opacity: 0;
-
-            &--visible {
-              animation: jump-in ease-in-out 0.4s;
-              animation-fill-mode: forwards;
-              animation-iteration-count: 1;
-            }
-          }
-
-
-          @keyframes jump-in{
-            0%{
-              transform: scale(0);
-              opacity: 0.3;
-            }
-            50%{
-              transform: scale(1.5);
-              opacity: 1;
-            }
-            100%{
-              transform: scale(1);
-              opacity: 1;
-            }
-          }
-
-
-          .station__job__meta {
-            margin: 0px 30px;
-            padding: 8px;
-            background: #333333;
-            border: 2px solid rgba(16, 84, 16, 0.8);
-            text-align: left;
-            position: relative;
-            border-top: 0;
-            opacity: 0;
-            top: -10px;
-            transition: opacity .3s ease-in-out;
-            z-index: 2000;
-            pointer-events: none;
-            margin-top: -1px;
-
-            &__shadow {
-              position: absolute;
-              top: 16px;
-              bottom: 10px;
-              right: 0;
-              left: 0;
-              display: flex;
-              margin: 0 30px;
-              opacity: 0;
-              z-index: 20001;
-              pointer-events: none;
-              box-shadow: 0px 1px 6px rgb(177 234 177 / 80%);
-              transition: opacity 0.3s ease-in-out;
-            }
-          }
-
-          .bullet {
-            display: block;
-            cursor: pointer;
-            content: " ";
-            position: relative;
-            height: 12px;
-            width: 12px;
-            border-radius: 50%;
-            background: rgba(29, 148, 29, 1);
-            z-index: 103;
-            border: 2px solid rgb(216, 216, 216);
-
-            transform: translateX(-50%)
-                       translateY(-50%);
-            opacity: 0;
-
-            &--visible {
-              animation: jump-in ease-in-out 0.4s;
-              animation-fill-mode: forwards;
-              animation-iteration-count: 1;
-            }
-
-            &::before {
-              content: ' ';
-              display: block;
-              border-radius: 50%;
-              border: 2px solid transparent;
-              height: 8px;
-              width: 8px;
-            }
-
-            &:hover {
-              &:before {
-                border-color: rgb(216, 216, 216);;
-              }
-              ~ .station__job__meta{
-                opacity: 1;
-
-                &__shadow {
-                  opacity: 1;
-                }
-              }
-            }
-          }
-
-          &:after {
-            content: ' ';
-            display: block;
-            position: relative;
-            height: 1px;
-            border: 2px dashed rgb(16 84 16 / 80%);
-            width: 100%;
-            overflow: hidden;
-            clip: rect(3px, 100vw, 1vw, 0px);
-            display: none;
-          }
-        }
       }
 
       &__blur {
@@ -191,10 +54,10 @@ about-me {
             $careerPathLength: 3543.529052734375;
             stroke-dasharray: $careerPathLength;
             stroke-dashoffset: $careerPathLength;
-            animation: drawcareerPath 40s linear forwards;
+            animation: #{$componentName}__drawcareerPath 20s linear forwards;
             animation-iteration-count: 1;
 
-            @keyframes drawcareerPath {
+            @keyframes #{$componentName}__drawcareerPath {
               to { stroke-dashoffset: 0; }
             }
           }

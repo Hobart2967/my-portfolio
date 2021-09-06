@@ -1,0 +1,26 @@
+<div class="career__path__info__station"
+[ngStyle]="path | getPathCoordinates:station.atPath:true"
+[ngClass]="'career__path__info__station--' + (station.orientation || 'right')">
+  <div class="bullet" [ngClass]="{ 'bullet--visible': path | isVisibleAt:station.atPath:true | async}"></div>
+  <div class="career__path__info__station__details"
+      [ngClass]="{ 'career__path__info__station__details--visible': path | isVisibleAt:station.atPath:true | async}">
+    <div class="station__job">
+      <b [innerText]="station.job"></b>
+    </div>
+  </div>
+  <div class="station__job__meta">
+    <div [innerText]="station.companyName" class="station__company"></div>
+    <div class="station__time-span">
+      <span [innerText]="station.start.month.toString().padStart(2, '0')"></span>
+      <span>/</span>
+      <span [innerText]="station.start.year"></span>
+      <span> - </span>
+      <span [innerText]="station.end.month.toString().padStart(2, '0')"></span>
+      <span>/</span>
+      <span [innerText]="station.end.year"></span>
+    </div>
+  </div>
+  <div class="station__job__meta__shadow">
+
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { TypingAnimationDirective } from './directives/typing-animation/typing-a
 import { GetPathCoordinatesPipe } from './pipes/get-path-coordinates.pipe';
 import { IsVisibleAtPipe } from './pipes/is-visible-at.pipe';
 import { AboutMeComponent } from './views/about-me/about-me.component';
+import { CareerPathStation } from './views/about-me/career-path-station/career-path-station.component';
 import { HomeComponent } from './views/home/home.component';
 import { PortfolioWrapperComponent } from './views/portfolio-wrapper/portfolio-wrapper.component';
 
@@ -17,7 +18,7 @@ import { PortfolioWrapperComponent } from './views/portfolio-wrapper/portfolio-w
     TypingAnimationDirective,
     NavComponent,
     AboutMeComponent,
-
+    CareerPathStation,
     GetPathCoordinatesPipe,
     IsVisibleAtPipe
   ],
