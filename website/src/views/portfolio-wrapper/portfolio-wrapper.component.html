@@ -1,5 +1,10 @@
-<nav></nav>
-<main>
-  <router-outlet></router-outlet>
-  <footer></footer>
-</main>
+<div class="portfolio-wrapper__container">
+  <overlay-container [contentContainer]="contentContainer"></overlay-container>
+  <div #contentContainer>
+    <nav></nav>
+    <main>
+      <router-outlet></router-outlet>
+      <footer></footer>
+    </main>
+  </div>
+</div>

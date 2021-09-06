@@ -1,7 +1,9 @@
 <div class="career__path__info__station"
 [ngStyle]="path | getPathCoordinates:station.atPath:true"
 [ngClass]="{ 'career__path__info__station--force-visibility': showImmediately}">
-  <div class="bullet" [ngClass]="{ 'bullet--visible': path | isVisibleAt:station.atPath:true | async}"></div>
+  <div class="bullet"
+       (click)="openStationInfoModal()"
+       [ngClass]="{ 'bullet--visible': path | isVisibleAt:station.atPath:true | async}"></div>
   <div class="career__path__info__station__details"
       [ngClass]="{ 'career__path__info__station__details--visible': path | isVisibleAt:station.atPath:true | async}">
     <div class="station__job">

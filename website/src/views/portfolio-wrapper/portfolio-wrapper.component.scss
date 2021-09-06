@@ -2,12 +2,13 @@ portfolio-wrapper {
   display: flex;
   min-height: 100vh;
 
-  > :first-child {
-    width: 128px;
+  .overlay-container__wrapper--overlay-active main {
+    pointer-events: none;
   }
-
   main {
     flex: 1 1;
     margin-left: 128px;
+    height: 100vh;
+    overflow: auto;
   }
 }
