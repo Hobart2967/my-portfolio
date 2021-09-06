@@ -55,7 +55,6 @@ about-me {
             padding: 8px;
             background: #333333;
             border: 2px solid rgba(16, 84, 16, 0.8);
-            transform: translateY(calc(-50% - 16px));
             text-align: left;
 
             position: relative;
@@ -91,17 +90,30 @@ about-me {
             padding: 8px;
             background: #333333;
             border: 2px solid rgba(16, 84, 16, 0.8);
-            transform: translateY(calc(-50% - 16px));
             text-align: left;
             position: relative;
             border-top: 0;
             opacity: 0;
+            top: -10px;
             transition: opacity .3s ease-in-out;
             z-index: 2000;
             pointer-events: none;
             margin-top: -1px;
 
-
+            &__shadow {
+              position: absolute;
+              top: 16px;
+              bottom: 10px;
+              right: 0;
+              left: 0;
+              display: flex;
+              margin: 0 30px;
+              opacity: 0;
+              z-index: 20001;
+              pointer-events: none;
+              box-shadow: 0px 1px 6px rgb(177 234 177 / 80%);
+              transition: opacity 0.3s ease-in-out;
+            }
           }
 
           .bullet {
@@ -141,6 +153,10 @@ about-me {
               }
               ~ .station__job__meta{
                 opacity: 1;
+
+                &__shadow {
+                  opacity: 1;
+                }
               }
             }
           }
