@@ -14,6 +14,23 @@ $componentName: 'career-path-station';
       }
     }
 
+    &--force-visibility {
+      &.career__path__info__station {
+        .career__path__info__station__details {
+          animation: none;
+          opacity: 1;
+        }
+
+        .bullet {
+          &, &--visible {
+            animation: none;
+            opacity: 1;
+          }
+        }
+      }
+
+    }
+
     &__details {
       margin: 0px 30px;
       padding: 8px;

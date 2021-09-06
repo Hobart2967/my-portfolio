@@ -38,7 +38,7 @@
   </div>
   <div class="column">
     <h1>
-      <span [startDelay]="700" [typeSpeed]="10" [hideCursorOnComplete]="true" typingAnimation>
+      <span [startDelay]="700" [typeSpeed]="wasOpened ? 0 : 10" [hideCursorOnComplete]="true" typingAnimation>
         I Did It My Way! (Career path)
       </span>
       <span>&nbsp;</span>
@@ -50,6 +50,7 @@
           <div class="career__path__info">
             <career-path-station *ngFor="let station of stations"
                                  [station]="station"
+                                 [showImmediately]="wasOpened"
                                  [path]="path"></career-path-station>
           </div>
           <svg viewBox="18.426 -301.115 500.032 867.64">

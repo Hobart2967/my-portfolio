@@ -2,6 +2,18 @@
 
 $componentName: 'about-me';
 
+.keep-animation-frame {
+  .column .row {
+    animation: none;
+    opacity: 1
+  }
+
+  .career__path > div > svg > path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
 #{$componentName} {
   display: block;
 

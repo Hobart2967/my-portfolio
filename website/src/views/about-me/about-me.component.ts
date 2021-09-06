@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { stations } from '../../configuration/stations';
 import { CareerStation } from '../../models/career-station.interface';
 import { NavigationMemoryService } from '../../services/navigation-memory.service';
@@ -9,7 +9,7 @@ import { NavigationMemoryService } from '../../services/navigation-memory.servic
   styleUrls: ['./about-me.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AboutMeComponent implements AfterViewInit {
+export class AboutMeComponent implements OnInit {
   //#region Properties
   public get stations(): CareerStation[] {
     return stations;
@@ -30,7 +30,7 @@ export class AboutMeComponent implements AfterViewInit {
   //#endregion
 
   //#region Public Methods
-  public ngAfterViewInit() {
+  public ngOnInit() {
     this._wasOpened = this._navigationMemoryService.wasOpened('about-me');
   }
   //#endregion

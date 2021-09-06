@@ -9,6 +9,16 @@ import { CareerStation } from '../../../models/career-station.interface';
 })
 export class CareerPathStation {
   //#region Properties
+  private _showImmediately: boolean;
+  @Input()
+  public get showImmediately(): boolean {
+    return this._showImmediately;
+  }
+  public set showImmediately(v: boolean) {
+    this._showImmediately = v;
+  }
+
+
   private _station: CareerStation;
   @Input()
   public get station(): CareerStation {

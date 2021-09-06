@@ -36,12 +36,16 @@ export class Typed {
         this.insertCursor();
       }
 
-      this.timeout = setTimeout(() => {
-        if (!this.options.noCursorStartDelay) {
-          this.insertCursor()
-        }
-        this.typewrite()
-      }, this.options.startDelay)
+      this.timeout = setTimeout(
+        () => {
+            if (!this.options.noCursorStartDelay) {
+            this.insertCursor()
+            }
+            this.typewrite()
+        },
+        this.options.typeSpeed
+          ? this.options.startDelay
+          : 0)
   }
 
   private typewrite() {

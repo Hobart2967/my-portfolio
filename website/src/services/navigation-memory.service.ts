@@ -8,12 +8,13 @@ export class NavigationMemoryService {
 
   //#region Public Methods
   public wasOpened(pageName: string): boolean {
-    this._pageWasOpened.set(pageName, true);
-
+    let result = false;
     if (this._pageWasOpened.has(pageName)) {
-      return false;
+      result = true;
     }
 
-    return true;
+    this._pageWasOpened.set(pageName, true);
+
+    return result;
   }
 }
