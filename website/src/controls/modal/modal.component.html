@@ -1,6 +1,13 @@
-<div class="modal">
-  <div class="modal__backdrop"></div>
-  <div class="modal__window">
-    <ng-template dynamic-content #dynamicContent="dynamicContent"></ng-template>
+<div class="modal" *ngIf="options$ | async as options">
+  <div class="modal__backdrop" [ngClass]="{'modal__backdrop--hiding': isHiding }"></div>
+  <div class="modal__window" [ngClass]="{'modal__window--hiding': isHiding }">
+    <div class="modal__window__title">
+      <div class="modal__window__title__text" *ngIf="options && options.title">
+        <h1 [innerText]="options.title"></h1>
+      </div>
+    </div>
+    <div class="modal__window__body">
+      <ng-template dynamic-content #dynamicContent="dynamicContent"></ng-template>
+    </div>
   </div>
 </div>

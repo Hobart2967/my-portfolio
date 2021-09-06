@@ -48,7 +48,8 @@ export class CareerPathStation {
   //#region Public Methods
   public openStationInfoModal() {
     this._modalService.openModal({
-      modalContent: CareerStationInfoComponent
+      modalContent: CareerStationInfoComponent,
+      title: this.station.job
     });
   }
   //#endregion

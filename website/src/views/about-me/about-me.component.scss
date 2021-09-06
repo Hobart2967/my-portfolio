@@ -14,8 +14,10 @@ $componentName: 'about-me';
   }
 }
 
+
 #{$componentName} {
   display: block;
+  h1 { margin-top: 60px; }
 
   .column {
     flex: 1 1 auto;

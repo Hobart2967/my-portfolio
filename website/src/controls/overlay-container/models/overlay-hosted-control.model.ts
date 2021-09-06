@@ -1,3 +1,5 @@
-export interface OverlayHostedControl {
-  options: any;
+import { Observable } from 'rxjs';
+
+export interface OverlayHostedControl<T> {
+  registerOptions(options: T): void;
 }

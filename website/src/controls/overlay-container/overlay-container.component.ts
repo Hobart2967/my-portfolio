@@ -64,21 +64,17 @@ export class OverlayContainer extends BaseComponent implements AfterViewInit {
         active => active
           .pipe(filter(options => !!options))
           .subscribe((options) =>
-            this.openOverlay(options))),
-
-      fromEvent(this._document, 'keyup')
-        .pipe(map(ev => ev as KeyboardEvent))
-        .pipe(filter(ev => ev.key === 'Escape'))
-        .subscribe(() => this._overlayService.hideOverlay()));
-
+            this.openOverlay(options))))
   }
   //#endregion
 
   //#region Private Methods
   private async openOverlay<TContent extends BaseComponent>(options: OverlayOptions<TContent>): Promise<void> {
     this._contentContainer.classList.add(OverlayContainer.CLASS_OVERLAY_ACTIVE);
-    const contentComponent = await this.dynamicContent.add<BaseComponent>(options.content) as unknown as OverlayHostedControl;
-    contentComponent.options = options.data;
+    const componentRef = await this.dynamicContent.add<BaseComponent>(options.content);
+    this._overlayService.registerOverlayItem(componentRef);
+    const { instance: contentComponent } = componentRef;
+    (contentComponent as unknown as OverlayHostedControl<any>).registerOptions(options.data);
   }
 
   private closeOverlay(): void {

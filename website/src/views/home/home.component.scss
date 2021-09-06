@@ -5,6 +5,8 @@ home {
   margin: 14vh auto;
   max-width: 1024px;
 
+  h1 { margin-top: 60px; }
+
   .headline, .sub-headline {
     @extend %h1;
 
