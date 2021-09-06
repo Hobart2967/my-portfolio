@@ -1,5 +1,4 @@
-<div *ngIf="(overlayActive$ | async) as overlayActive"
-     class="overlay-container__wrapper"
-     [ngClass]="{'overlay-container__wrapper--overlay-active': overlayActive }">
-  <div></div>
+<div class="overlay-container__wrapper"
+     [ngClass]="{'overlay-container__wrapper--overlay-active': !!(overlayActive$ | async) }">
+  <ng-template dynamic-content #dynamicContent="dynamicContent"></ng-template>
 </div>
