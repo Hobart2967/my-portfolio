@@ -45,10 +45,20 @@ export class Typed {
   }
 
   private typewrite() {
-      const humanize = this.humanizer(this.options.typeSpeed)
+      const humanize = this.options.typeSpeed
+        ? this.humanizer(this.options.typeSpeed)
+        : this.options.typeSpeed;
+
+      if (!this.options.typeSpeed) {
+        this.strPos = this.textContent.length;
+
+        this.removeCursor();
+        this.keepTyping();
+        this.doneTyping();
+      }
 
       this.timeout = setTimeout(() => {
-          this.toggleBlinking(false)
+        this.toggleBlinking(false)
 
           if (this.strPos === this.textContent.length) {
               this.doneTyping()

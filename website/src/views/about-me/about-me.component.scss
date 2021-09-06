@@ -23,7 +23,8 @@ $componentName: 'about-me';
       opacity: 0;
       @for $i from 1 to 4 {
         &:nth-child(#{$i*2}) {
-          animation-delay: #{0.3s * $i + ($i - 1) * pow(0.40, $i) + 0.5};
+          // pow(0.40, $i)
+          animation-delay: #{0.1s * $i + ($i - 1) * 0.65};
         }
       }
 
@@ -69,7 +70,7 @@ $componentName: 'about-me';
       }
 
       &__blur {
-        box-shadow: inset 1px 1px 20px 40px var(--color-website-background);
+        box-shadow: inset 1px 1px 200px 100px var(--color-website-background);
         z-index: 100;
       }
 

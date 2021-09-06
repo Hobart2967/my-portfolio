@@ -1,12 +1,12 @@
-<div class="d-flex">
+<div class="d-flex" [ngClass]="{'keep-animation-frame': wasOpened }">
   <div class="column">
     <h1>
-      <span [typeSpeed]="10" [hideCursorOnComplete]="true" typingAnimation>
+      <span [typeSpeed]="wasOpened ? 0 : 10" [hideCursorOnComplete]="true" typingAnimation>
         Me, myself and I
       </span>
+      <span>&nbsp;</span>
     </h1>
     <div class="row">
-
       <p>I am a full-stack software engineer located in Cologne. Whilst living a great passion for frontend development, I really love to implement backends filling their counterpart with data and business processes.</p>
       <p>Also, my ability to develop databases and the surrounding infrastructure make me feel like I have developed something complete when finishing a product.</p>
     </div>
@@ -14,9 +14,10 @@
     <!-- TODO: Insert Google Maps with Cologne PIN here! -->
 
     <h1>
-      <span [startDelay]="500" [typeSpeed]="10" [hideCursorOnComplete]="true" typingAnimation>
+      <span [startDelay]="650" [typeSpeed]="wasOpened ? 0 : 10" [hideCursorOnComplete]="true" typingAnimation>
         Professional Status
       </span>
+      <span>&nbsp;</span>
     </h1>
     <div class="row">
       <p>Currently, I am working for <a href="https://www.trustedshops.com">Trusted Shops</a>, europes leading trust brand - A company creating review systems for all kinds of markets, including its origin market, e-commerce.</p>
@@ -24,9 +25,10 @@
     </div>
 
     <h1>
-      <span [startDelay]="1000" [typeSpeed]="20" [hideCursorOnComplete]="true" typingAnimation>
+      <span [startDelay]="1300" [typeSpeed]="wasOpened ? 0 : 10" [hideCursorOnComplete]="true" typingAnimation>
         What I have done so far
       </span>
+      <span>&nbsp;</span>
     </h1>
     <div class="row">
       <p>In the past years, I have been working on several things and target devices. This includes hybrid and native mobile apps, web apps, hybrid native desktop apps, rich clients, websites and many more things.</p>
@@ -39,6 +41,7 @@
       <span [startDelay]="700" [typeSpeed]="10" [hideCursorOnComplete]="true" typingAnimation>
         I Did It My Way! (Career path)
       </span>
+      <span>&nbsp;</span>
     </h1>
     <div class="career">
       <div class="career__path__blur"></div>
