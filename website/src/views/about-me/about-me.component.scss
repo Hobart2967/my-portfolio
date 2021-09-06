@@ -1,12 +1,42 @@
+@import "styles/includes";
+
 $componentName: 'about-me';
+
 #{$componentName} {
   display: block;
 
   .column {
     flex: 1 1 auto;
     padding: 16px;
-    .row {
+
+    h1 {
       padding: 0 16px;
+    }
+    .row {
+      position: relative;
+      z-index: 10;
+      padding: 0 16px;
+      animation: #{$componentName}__fade-in 0.5s ease-in-out;
+      animation-fill-mode: forwards;
+
+      animation-iteration-count: 1;
+      opacity: 0;
+      @for $i from 1 to 4 {
+        &:nth-child(#{$i*2}) {
+          animation-delay: #{0.8s * $i + ($i - 1) * pow(0.90, $i)};
+        }
+      }
+
+      @keyframes #{$componentName}__fade-in {
+        0% {
+          opacity: 0;
+          transform: translateX(-10%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
     }
   }
 
@@ -54,7 +84,7 @@ $componentName: 'about-me';
             $careerPathLength: 3543.529052734375;
             stroke-dasharray: $careerPathLength;
             stroke-dashoffset: $careerPathLength;
-            animation: #{$componentName}__drawcareerPath 20s linear forwards;
+            animation: #{$componentName}__drawcareerPath 10s linear forwards;
             animation-iteration-count: 1;
 
             @keyframes #{$componentName}__drawcareerPath {
