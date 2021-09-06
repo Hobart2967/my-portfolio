@@ -2,7 +2,7 @@ export interface CareerStation {
   companyName: string;
   job: string;
   atPath: number;
-  orientation?: string;
+  description?: string;
   school?: boolean;
   start: {
     month: number;
