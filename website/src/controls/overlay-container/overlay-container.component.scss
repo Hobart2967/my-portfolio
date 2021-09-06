@@ -9,10 +9,17 @@
 }
 
 overlay-container {
-  display: block;
-  position: fixed;
-  pointer-events: all;
-  height: 100vh;
-  width: 100vw;
-  z-index: 9000;
+
+  .overlay-container__wrapper {
+    position: fixed;
+    pointer-events: all;
+    height: 100vh;
+    width: 100vw;
+    z-index: 9000;
+    pointer-events: none;
+
+    &--overlay-active {
+      pointer-events: all;
+    }
+  }
 }
