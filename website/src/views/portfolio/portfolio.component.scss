@@ -2,14 +2,15 @@
 
 portfolio {
   display: block;
-  padding: 32px;
+  padding: 76px 32px 32px 32px;
 
   .row {
     display: flex;
     flex-wrap: wrap;
 
     .project {
-      width: 25%;
+      width: calc(25% - 52px);
+      margin: 8px;
       border: 2px solid rgba(16, 84, 16, 0.8);
       padding: 16px;
 
