@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, ViewChild, ViewEncapsulation } from '@angular/core';
 import ForceGraph3D from '3d-force-graph';
 import { GraphNode } from '../../models/graph/graph-node.model';
 import { GraphNodeLink } from '../../models/graph/graph-node-link';
@@ -6,6 +6,7 @@ import { SkillTree } from './models/skill-tree.model';
 import { CSS2DObject, CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer';
 import * as d3 from 'd3';
 import { BufferAttribute, BufferGeometry, Euler, Line, LineBasicMaterial } from 'three';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'skills',
@@ -17,6 +18,12 @@ export class SkillsComponent implements AfterViewInit {
   //#region Properties
   @ViewChild('graph')
   public graph: ElementRef;
+  //#endregion
+
+  //#region Ctor
+  public constructor(@Inject(DOCUMENT) private readonly _document: Document) {
+
+  }
   //#endregion
 
   //#region Public Methods
@@ -178,9 +185,10 @@ export class SkillsComponent implements AfterViewInit {
     });
 
     const groupColors: string[]= [
+      '#1d948f',
       '#1d941d',
+      '#32ec32',
       '#ccc',
-      '#1d948f'
     ];
     const nodeColorScale = d3.scaleOrdinal(d3.schemeRdYlGn[4])
     const graph = myGraph(this.graph.nativeElement);
@@ -250,16 +258,19 @@ export class SkillsComponent implements AfterViewInit {
         return _2dElement;
       })
       .nodeThreeObjectExtend(true)
+      .width((this.graph.nativeElement as HTMLElement).clientWidth)
+      .height((this.graph.nativeElement as HTMLElement).clientHeight)
       .nodeColor(({groupIndex}: any) => groupColors[groupIndex % groupColors.length])
-      .zoomToFit()
+      .cooldownTicks(100)
       .graphData({ nodes, links });
 
     myGraph
       .d3Force('link')
       .distance(() => 100)
 
+    graph.onEngineStop(() => graph.zoomToFit(400));
     let rotation: Euler = null;
-    setInterval(() => {
+    this._document.defaultView.setInterval(() => {
       const { x: x1, y: y1, z: z1 } = graph.cameraPosition();
 
       if (rotation && graph.rotation.equals(rotation)) {
@@ -289,7 +300,14 @@ export class SkillsComponent implements AfterViewInit {
           (x.element$ as HTMLElement).style.opacity = `${1 - 0.3 * percentage}`;
         }
       });
-    }, 1000 / 30)
+    }, 1000 / 30);
+
+    this._document.addEventListener('resize', () => {
+      graph
+        .width((this.graph.nativeElement as HTMLElement).clientWidth)
+        .height((this.graph.nativeElement as HTMLElement).clientHeight)
+        .refresh();
+    });
   }
   //#endregion
 
