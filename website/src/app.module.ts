@@ -17,6 +17,7 @@ import { PortfolioWrapperComponent } from './views/portfolio-wrapper/portfolio-w
 import { ModalComponent } from './controls/modal/modal.component';
 import { ModalService } from './services/modal.service';
 import { SkillsComponent } from './views/skills/skills.component';
+import { PortfolioComponent } from './views/portfolio/portfolio.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { SkillsComponent } from './views/skills/skills.component';
 
     AboutMeComponent,
     CareerPathStationComponent,
+
+    PortfolioComponent,
 
     SkillsComponent,
 

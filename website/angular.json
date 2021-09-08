@@ -31,7 +31,12 @@
             },
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/views/portfolio/avsn.de/",
+                "output": "assets/images/portfolio/avsn.de/"
+              }
             ],
             "styles": [
               "src/styles.scss"
