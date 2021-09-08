@@ -16,6 +16,7 @@ import { HomeComponent } from './views/home/home.component';
 import { PortfolioWrapperComponent } from './views/portfolio-wrapper/portfolio-wrapper.component';
 import { ModalComponent } from './controls/modal/modal.component';
 import { ModalService } from './services/modal.service';
+import { SkillsComponent } from './views/skills/skills.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { ModalService } from './services/modal.service';
 
     AboutMeComponent,
     CareerPathStationComponent,
+
+    SkillsComponent,
 
     TypingAnimationDirective,
 
