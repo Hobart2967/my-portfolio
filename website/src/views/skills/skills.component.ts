@@ -40,7 +40,14 @@ export class SkillsComponent implements AfterViewInit {
         name: 'Methods',
         vx: 50,
         vz: 0,
-        collapsed: false
+        collapsed: false,
+        children: [{
+          id: 'scrum',
+          name: 'Scrum'
+        }, {
+          id: 'kanban',
+          name: 'Kanban'
+        }]
       }, {
         id: 'backend',
         name: 'Backend Development',
@@ -109,6 +116,9 @@ export class SkillsComponent implements AfterViewInit {
         vz: 0,
         collapsed: false,
         children: [{
+          id: 'architecture',
+          name: 'Software Architecture'
+        }, {
           id: 'programming-languages',
           name: 'Programming & Script languages',
           children: [{
@@ -203,6 +213,8 @@ export class SkillsComponent implements AfterViewInit {
     ];
     const nodeColorScale = d3.scaleOrdinal(d3.schemeRdYlGn[4])
     const graph = myGraph(this.graph.nativeElement);
+    let focusedNode = null;
+
     graph
       //.linkColor(({targetGroupIndex}: any) => groupColors[targetGroupIndex % groupColors.length])
       .nodeColor(node => nodeColorScale(node.id as string))
@@ -231,15 +243,8 @@ export class SkillsComponent implements AfterViewInit {
 
         .onNodeHover((node: any) => this.graph.nativeElement.style.cursor = node && node.children.length ? 'pointer' : null)
         .onNodeClick((node: any) => {
-          // Aim at node from outside it
-          const distance = 200;
-          const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
 
-          graph.cameraPosition(
-            { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, // new position
-            node, // lookAt ({ x, y, z })
-            3000  // ms transition duration
-          );
+          this.focusNode(node, graph);
         })
         .linkPositionUpdate((object3d, { start, end }) => {
           const line = object3d as Line;
@@ -299,18 +304,11 @@ export class SkillsComponent implements AfterViewInit {
     this._document.defaultView.setTimeout(() => {
       const node = nodes.find(x => x.id === 'me');
 
-      const distance = 200;
-      const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
-
-      graph.cameraPosition(
-        { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, // new position
-        node as any, // lookAt ({ x, y, z })
-        5000  // ms transition duration
-      );
+      this.focusNode(node, graph);
     }, 500);
     let rotation: Euler = null;
     this._document.defaultView.setInterval(() => {
-      const { x: x1, y: y1, z: z1 } = graph.cameraPosition();
+      const cameraPosition = graph.cameraPosition();
 
       if (rotation && graph.rotation.equals(rotation)) {
         return;
@@ -323,12 +321,11 @@ export class SkillsComponent implements AfterViewInit {
           return;
         }
 
-        const { x: x2, y: y2, z: z2 } = x;
-        const distance = (Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2))/2;
+        const distance = this.calculate3dDistance(cameraPosition, x);
         const defaultSize = 24;
         const minimumSize = 5;
         const currentSize = (x.element$ as HTMLElement).style.fontSize;
-        const percentage = (distance / 136329);
+        const percentage = Math.min(1, (distance / 600));
         const targetSize = `${Math.max(minimumSize, Math.round((defaultSize - percentage * defaultSize) *10)/10)}px`;
         if(targetSize !== currentSize) {
           (x.element$ as HTMLElement).style.fontSize = targetSize;
@@ -337,6 +334,28 @@ export class SkillsComponent implements AfterViewInit {
       });
     }, 1000 / 30);
   }
+
+  private focusNode(node: GraphNode<SkillTree>, graph: any) {
+    const maxDistance = node.children
+      .map(child => this.calculate3dDistance(node, child))
+      .reduce((prev, cur) => Math.max(prev, cur), 0);
+    const distance = (maxDistance + 20) * 2;
+    const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+
+    graph.cameraPosition(
+      { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio },
+      node as any,
+      3000
+    );
+  }
+
+  private calculate3dDistance(x: any, y: any) {
+    const { x: x1, y: y1, z: z1 } = x
+    const { x: x2, y: y2, z: z2 } = y;
+    const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2));
+    return distance;
+  }
+
   //#endregion
 
   //#region PRivate Methods
