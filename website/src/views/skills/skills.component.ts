@@ -165,8 +165,21 @@ export class SkillsComponent implements AfterViewInit {
         vy: 50,
         collapsed: false,
         children: [{
-          id: 'native-desktop',
-          name: 'Native Desktop Development',
+          id: 'mobile',
+          name: 'Mobile Development',
+          children: [{
+            id: 'android',
+            name: 'Android App Development'
+          }, {
+            id: 'ios-hybrid',
+            name: 'Hybrid iOS App Development with Apache Cordova'
+          }, {
+            id: 'ios-android',
+            name: 'Hybrid Android App Development with Apache Cordova'
+          }]
+        }, {
+          id: 'desktop',
+          name: 'Desktop Development',
           children: [{
             id: 'winforms',
             name: 'Native Windows - Windows Forms'
@@ -176,6 +189,9 @@ export class SkillsComponent implements AfterViewInit {
           }, {
             id: 'gambas',
             name: 'Native Linux - Gambas & Visual Basic'
+          }, {
+            id: 'desktop-hybrid',
+            name: 'Hybrid Desktop Clients with Electron'
           }]
         }, {
           id: 'web',
@@ -213,7 +229,7 @@ export class SkillsComponent implements AfterViewInit {
     ];
     const nodeColorScale = d3.scaleOrdinal(d3.schemeRdYlGn[4])
     const graph = myGraph(this.graph.nativeElement);
-    let focusedNode = null;
+    let focusedNode: any = null;
 
     graph
       //.linkColor(({targetGroupIndex}: any) => groupColors[targetGroupIndex % groupColors.length])
@@ -237,13 +253,12 @@ export class SkillsComponent implements AfterViewInit {
           geometry.setAttribute('position', new BufferAttribute(new Float32Array(2 * 3), 3));
           geometry.setAttribute('color', new BufferAttribute(colors, 3));
           const line = new Line(geometry, material);
-          line.material.linewidth = 0.5;
           return line;
         })
 
         .onNodeHover((node: any) => this.graph.nativeElement.style.cursor = node && node.children.length ? 'pointer' : null)
         .onNodeClick((node: any) => {
-
+          focusedNode = node;
           this.focusNode(node, graph);
         })
         .linkPositionUpdate((object3d, { start, end }) => {
@@ -303,7 +318,7 @@ export class SkillsComponent implements AfterViewInit {
 
     this._document.defaultView.setTimeout(() => {
       const node = nodes.find(x => x.id === 'me');
-
+      focusedNode = node;
       this.focusNode(node, graph);
     }, 500);
     let rotation: Euler = null;
@@ -327,12 +342,37 @@ export class SkillsComponent implements AfterViewInit {
         const currentSize = (x.element$ as HTMLElement).style.fontSize;
         const percentage = Math.min(1, (distance / 600));
         const targetSize = `${Math.max(minimumSize, Math.round((defaultSize - percentage * defaultSize) *10)/10)}px`;
+        let focusBoost = 0;
+        if (focusedNode && !this.isChildOf(focusedNode, x, links) && focusedNode.id !== x.id) {
+          focusBoost = 0.3;
+        }
+
         if(targetSize !== currentSize) {
           (x.element$ as HTMLElement).style.fontSize = targetSize;
-          (x.element$ as HTMLElement).style.opacity = `${1 - 0.8 * percentage}`;
+          (x.element$ as HTMLElement).style.opacity = `${1 - 0.8 * percentage - focusBoost}`;
         }
       });
     }, 1000 / 30);
+  }
+
+  private isChildOf(parent: any, child: any, links: GraphNodeLink[]) {
+
+    let currentChildId = child.id;
+    let currentLink: GraphNodeLink = undefined;
+    let isChild = false;
+    do {
+      currentLink = links.find(x => (x.target as any).id === currentChildId);
+      if (currentLink) {
+        currentChildId = currentLink.source;
+      }
+
+      if (currentLink && currentLink.source === parent.id) {
+        isChild = true;
+        break;
+      }
+    } while (currentLink)
+    return isChild;
+
   }
 
   private focusNode(node: GraphNode<SkillTree>, graph: any) {
