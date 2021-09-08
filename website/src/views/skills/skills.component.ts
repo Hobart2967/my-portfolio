@@ -7,6 +7,7 @@ import { CSS2DObject, CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRe
 import * as d3 from 'd3';
 import { BufferAttribute, BufferGeometry, Euler, Line, LineBasicMaterial } from 'three';
 import { DOCUMENT } from '@angular/common';
+import { FlatNodes } from '../../models/graph/flat-nodes.model';
 
 @Component({
   selector: 'skills',
@@ -30,21 +31,23 @@ export class SkillsComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     const skills: SkillTree = {
       id: 'me',
-      name: 'Me',
+      name: 'My personal skills',
       vx: 0,
       vy: 0,
-      vz: 50,
+      vz: 0,
       children: [{
         id: 'methods',
         name: 'Methods',
         vx: 50,
-        vz: -50,
+        vz: 0,
+        collapsed: false
       }, {
         id: 'backend',
         name: 'Backend Development',
         vx: 50,
         vy: 50,
-        vz: -50,
+        vz: 0,
+        collapsed: false,
         children: [{
           id: 'asp',
           name: 'ASP.NET MVC'
@@ -62,7 +65,8 @@ export class SkillsComponent implements AfterViewInit {
         id: 'devops',
         name: 'Infrastructure / DevOps',
         vx: 50,
-        vz: -50,
+        vz: 0,
+        collapsed: false,
         children: [{
           id: 'os',
           name: 'Operating Systems',
@@ -102,6 +106,8 @@ export class SkillsComponent implements AfterViewInit {
       }, {
         id: 'general',
         name: 'General',
+        vz: 0,
+        collapsed: false,
         children: [{
           id: 'programming-languages',
           name: 'Programming & Script languages',
@@ -145,8 +151,9 @@ export class SkillsComponent implements AfterViewInit {
         id: 'frontend',
         name: 'Frontend Development',
         vx: 50,
-        vz: -50,
+        vz: 0,
         vy: 50,
+        collapsed: false,
         children: [{
           id: 'native-desktop',
           name: 'Native Desktop Development',
@@ -172,14 +179,18 @@ export class SkillsComponent implements AfterViewInit {
           }, {
             id: 'wordpress',
             name: 'Wordpress'
+          }, {
+            id: 'joomla',
+            name: 'Joomla'
           }]
         }]
       }]
     };
 
-    const nodes: GraphNode[] = [];
-    const links: GraphNodeLink[] = [];
+    let nodes: GraphNode<SkillTree>[] = [];
+    let links: GraphNodeLink[] = [];
     this.parseSkillTree(skills, 1, nodes, links);
+
     const myGraph = ForceGraph3D({
       extraRenderers: [new CSS2DRenderer() as any]
     });
@@ -209,12 +220,26 @@ export class SkillsComponent implements AfterViewInit {
               .map(({r, g, b}) =>  [r, g, b].map(v => v / 255)
             )));
 
-          const material = new LineBasicMaterial({ vertexColors: true, linewidth: 30 });
+          const material = new LineBasicMaterial({ vertexColors: true });
           const geometry = new BufferGeometry();
           geometry.setAttribute('position', new BufferAttribute(new Float32Array(2 * 3), 3));
           geometry.setAttribute('color', new BufferAttribute(colors, 3));
           const line = new Line(geometry, material);
+          line.material.linewidth = 0.5;
           return line;
+        })
+
+        .onNodeHover((node: any) => this.graph.nativeElement.style.cursor = node && node.children.length ? 'pointer' : null)
+        .onNodeClick((node: any) => {
+          // Aim at node from outside it
+          const distance = 200;
+          const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
+
+          graph.cameraPosition(
+            { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, // new position
+            node, // lookAt ({ x, y, z })
+            3000  // ms transition duration
+          );
         })
         .linkPositionUpdate((object3d, { start, end }) => {
           const line = object3d as Line;
@@ -254,21 +279,35 @@ export class SkillsComponent implements AfterViewInit {
         nodeEl.className = 'skills__node-label';
         const _2dElement = new CSS2DObject(nodeEl);
         node.element$ = nodeEl;
-        node.spaceOpject$ = _2dElement;
+        node.spaceObject$ = _2dElement;
         return _2dElement;
       })
       .nodeThreeObjectExtend(true)
       .width((this.graph.nativeElement as HTMLElement).clientWidth)
       .height((this.graph.nativeElement as HTMLElement).clientHeight)
-      .nodeColor(({groupIndex}: any) => groupColors[groupIndex % groupColors.length])
+      .nodeColor(({groupIndex, id }: any) =>
+        id === 'me'
+          ? '#ff0000'
+          : groupColors[groupIndex % groupColors.length])
       .cooldownTicks(100)
-      .graphData({ nodes, links });
+      .graphData({ nodes: nodes, links: links });
 
     myGraph
       .d3Force('link')
-      .distance(() => 100)
+      .distance(() => 50)
 
-    graph.onEngineStop(() => graph.zoomToFit(400));
+    this._document.defaultView.setTimeout(() => {
+      const node = nodes.find(x => x.id === 'me');
+
+      const distance = 200;
+      const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
+
+      graph.cameraPosition(
+        { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, // new position
+        node as any, // lookAt ({ x, y, z })
+        5000  // ms transition duration
+      );
+    }, 500);
     let rotation: Euler = null;
     this._document.defaultView.setInterval(() => {
       const { x: x1, y: y1, z: z1 } = graph.cameraPosition();
@@ -280,41 +319,31 @@ export class SkillsComponent implements AfterViewInit {
       rotation = graph.rotation;
 
       nodes.forEach((x: any) => {
-        if (x.id === 'me') {
-          return;
-        }
-
         if (!x.element$) {
           return;
         }
 
         const { x: x2, y: y2, z: z2 } = x;
         const distance = (Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2))/2;
-        const defaultSize = 38;
-        const minimumSize = 10;
+        const defaultSize = 24;
+        const minimumSize = 5;
         const currentSize = (x.element$ as HTMLElement).style.fontSize;
         const percentage = (distance / 136329);
         const targetSize = `${Math.max(minimumSize, Math.round((defaultSize - percentage * defaultSize) *10)/10)}px`;
         if(targetSize !== currentSize) {
           (x.element$ as HTMLElement).style.fontSize = targetSize;
-          (x.element$ as HTMLElement).style.opacity = `${1 - 0.3 * percentage}`;
+          (x.element$ as HTMLElement).style.opacity = `${1 - 0.8 * percentage}`;
         }
       });
     }, 1000 / 30);
-
-    this._document.addEventListener('resize', () => {
-      graph
-        .width((this.graph.nativeElement as HTMLElement).clientWidth)
-        .height((this.graph.nativeElement as HTMLElement).clientHeight)
-        .refresh();
-    });
   }
   //#endregion
 
   //#region PRivate Methods
-  private parseSkillTree(skillTree: SkillTree, groupIndex: number, nodes: GraphNode[], links: GraphNodeLink[]): GraphNode {
-    const { id, name, children, fx, fy, fz, vx, vy, vz, x, y, z } = skillTree;
-    const node: GraphNode = {
+  private parseSkillTree(skillTree: SkillTree, groupIndex: number, nodes: GraphNode<SkillTree>[], links: GraphNodeLink[]): GraphNode<SkillTree> {
+    const { id, name, children, fx, fy, fz, vx, vy, vz, x, y, z, collapsed } = skillTree;
+
+    const node: GraphNode<SkillTree> = {
       id,
       name,
       fx,
@@ -326,21 +355,30 @@ export class SkillsComponent implements AfterViewInit {
       y,
       vz,
       z,
+      data: skillTree,
       groupIndex
     };
+
     nodes.push(node);
 
-    node.children = (children || []).map(child => {
-      const { id: target } = child;
-      links.push({
-        sourceGroupIndex: groupIndex,
-        source: id,
-        target,
-        targetGroupIndex: groupIndex + 1
-      });
 
-      return this.parseSkillTree(child, groupIndex + 1, nodes, links);
-    });
+    node.children = collapsed
+      ? []
+      : (children || [])
+      .map(child => {
+        const { id: target } = child;
+
+        links.push({
+          sourceGroupIndex: groupIndex,
+          source: id,
+          target,
+          targetGroupIndex: groupIndex + 1
+        });
+
+        return this.parseSkillTree(child, groupIndex + 1, nodes, links);
+      })
+      .filter(x => x);
+
 
     return node;
   }

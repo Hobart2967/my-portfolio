@@ -2,6 +2,7 @@ export interface SkillTree {
   id: string;
   name: string;
   children?: SkillTree[];
+  collapsed?: boolean;
   fx?: number;
   x?: number;
   vx?: number;
