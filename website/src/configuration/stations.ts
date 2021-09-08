@@ -123,13 +123,14 @@ export const stations: CareerStation[] = [{
   companyName: 'Trusted Shops GmbH',
   job: 'Senior Full-Stack Software Engineer',
   atPath: 73.5 / 100,
-  description: `At Trusted Shops, I officially started as a frontend developer only. I started as a part of the Consumer UX Team there, being responsible for the consumer web frontend. I picked up Angular 2 there, learning and expanding my knowledge up to the latest Angular version til today.
+  description: `At Trusted Shops, I officially started as a frontend developer only. I started as a part of their Consumer UX Team, being responsible for the consumer web frontend. During the time in this team, I deep-dived into Angular 2 and all further versions released - learning and expanding my knowledge about the framework.
+
   After working on the consumer platform, I continued to work on a website relaunch, based on Wordpress and Angular.
-  As this was finished, I continued to rebuild another new satellite of the Website with Angular - but this time, in combination with Angular Universal and SEO optimizations.
+  As this was finished, I was part of rebuilding a new satellite of the Website with Angular - but this time, in combination with Angular Universal and SEO optimizations.
 
   Since I also wanted to bring in my infrastructure and backend skills, I implemented a modular and pluggable test environment created with docker.
 
-  Today, I am responsible for building a pluggable micro-frontend platform and reusable libraries together with my current team.`,
+  Today, I am working as a full-stack developer responsible for building a pluggable micro-frontend platform and reusable libraries together with my current team.`,
   start: {
     month: 2,
     year: 2018,
