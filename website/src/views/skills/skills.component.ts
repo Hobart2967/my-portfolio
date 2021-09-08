@@ -116,6 +116,19 @@ export class SkillsComponent implements AfterViewInit {
         vz: 0,
         collapsed: false,
         children: [{
+          id: 'languages',
+          name: 'Languages',
+          children: [{
+            id: 'german',
+            name: 'German (Mother tongue)'
+          }, {
+            id: 'english',
+            name: 'English (C1)'
+          }, {
+            id: 'dutch',
+            name: 'Dutch (A2)'
+          }]
+        }, {
           id: 'architecture',
           name: 'Software Architecture'
         }, {
