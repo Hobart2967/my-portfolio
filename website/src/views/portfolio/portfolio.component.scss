@@ -1,5 +1,16 @@
 @import "styles/includes";
 
+%overlay-shadow {
+  box-shadow: inset 1px 1px 20px 20px var(--color-website-background);
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: transparent;
+  bottom: 0;
+}
+
 portfolio {
   display: block;
   padding: 76px 32px 32px 32px;
@@ -7,28 +18,46 @@ portfolio {
   .row {
     display: flex;
     flex-wrap: wrap;
-
+    justify-content: center;
     .project {
       width: calc(25% - 52px);
       margin: 8px;
       border: 2px solid rgba(16, 84, 16, 0.8);
       padding: 16px;
+      min-width: 250px;
+
+      .spider-web {
+        position: relative;
+        z-index: 10;
+        &__shadow {
+          @extend %overlay-shadow;
+        }
+
+        svg {
+          height: 100%;
+          width: 100%;
+        }
+
+        line,
+        path {
+          stroke: #CCC;
+          stroke-width: 2px;
+          fill: none;
+        }
+      }
 
       &__title {
         @extend %h2;
       }
+
       &__thumbnail {
         position: relative;
-        img { width: 100%;}
+
+        img { width: 100%; }
+
+
         &__shadow {
-          box-shadow: inset 1px 1px 20px 20px var(--color-website-background);
-          z-index: 100;
-          position: absolute;
-          top: 0;
-          right: 0;
-          left: 0;
-          background: transparent;
-          bottom: 0;
+          @extend %overlay-shadow;
         }
       }
     }

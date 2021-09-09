@@ -34,8 +34,8 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "src/views/portfolio/avsn.de/",
-                "output": "assets/images/portfolio/avsn.de/"
+                "input": "src/views/portfolio/images/",
+                "output": "assets/images/portfolio/"
               }
             ],
             "styles": [
