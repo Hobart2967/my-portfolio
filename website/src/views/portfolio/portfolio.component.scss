@@ -25,6 +25,20 @@ portfolio {
       border: 2px solid rgba(16, 84, 16, 0.8);
       padding: 16px;
       min-width: 250px;
+      display: flex;
+      flex-direction: column;
+
+
+      &__description {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        p:last-of-type {
+          flex: 1 1 auto;
+          display: block;
+        }
+      }
 
       .spider-web {
         position: relative;
