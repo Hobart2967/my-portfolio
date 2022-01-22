@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './configuration/routing.configuration';
 import { NavComponent } from './controls/nav/nav.component';
 import { DynamicContentDirective } from './directives/dynamic-content.directive';
@@ -18,6 +18,7 @@ import { ModalComponent } from './controls/modal/modal.component';
 import { ModalService } from './services/modal.service';
 import { SkillsComponent } from './views/skills/skills.component';
 import { PortfolioComponent } from './views/portfolio/portfolio.component';
+import { TransformToMaxWidthPipe } from './views/about-me/career-path-station/transform-to-max-width.pipe';
 
 @NgModule({
   declarations: [
@@ -39,10 +40,12 @@ import { PortfolioComponent } from './views/portfolio/portfolio.component';
     TypingAnimationDirective,
 
     GetPathCoordinatesPipe,
-    IsVisibleAtPipe
+    IsVisibleAtPipe,
+    TransformToMaxWidthPipe
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule
   ],
   providers: [

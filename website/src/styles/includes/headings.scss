@@ -3,6 +3,10 @@
   margin-bottom: 8px;
   font-family: 'Bebas Neue', cursive;
   letter-spacing: 2px;
+
+  @media (max-width: 768px) {
+    font-size: 4vh;
+  }
 }
 
 %h2 {

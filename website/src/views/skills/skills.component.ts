@@ -7,7 +7,6 @@ import { CSS2DObject, CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRe
 import * as d3 from 'd3';
 import { BufferAttribute, BufferGeometry, Euler, Line, LineBasicMaterial } from 'three';
 import { DOCUMENT } from '@angular/common';
-import { FlatNodes } from '../../models/graph/flat-nodes.model';
 
 @Component({
   selector: 'skills',
@@ -23,7 +22,6 @@ export class SkillsComponent implements AfterViewInit {
 
   //#region Ctor
   public constructor(@Inject(DOCUMENT) private readonly _document: Document) {
-
   }
   //#endregion
 
@@ -69,6 +67,47 @@ export class SkillsComponent implements AfterViewInit {
           name: 'Node.js Backends & CLIs'
         }]
       }, {
+        id: 'dbs',
+        name: 'Managing data',
+        children: [{
+          id: 'dbsys',
+          name: 'Database Systems',
+          children: [{
+            name: 'MySQL / MariaDB',
+            id: 'MySQL',
+          },
+          {
+            name: 'Dynamodb',
+            id: 'Dynamodb',
+          },
+          {
+            name: 'Mongodb',
+            id: 'Mongodb',
+          },
+          {
+            name: 'Oracle',
+            id: 'oracle',
+          },
+          {
+            name: 'Sqlite3',
+            id: 'sqlite3',
+          },
+          {
+            name: 'MS SQL',
+            id: 'mssql'
+          }]
+        }, {
+          id: 'MessageQs',
+          name: 'Message Queues',
+          children: [{
+            id: 'MSMQ',
+            name: 'Microsoft Message Queueing'
+          }]
+        }, {
+          id: 'graphql',
+          name: 'GraphQL (Basics)'
+        }]
+      }, {
         id: 'devops',
         name: 'Infrastructure / DevOps',
         vx: 50,
@@ -86,6 +125,19 @@ export class SkillsComponent implements AfterViewInit {
           }, {
             id: 'linux',
             name: 'Linux (Debian, Ubuntu, SuSE, etc.)'
+          }]
+        }, {
+          id: 'webservers',
+          name: 'Web Servers',
+          children: [{
+            id: 'apache',
+            name: 'Apache Httpd & Apache2'
+          }, {
+            id: 'nginx',
+            name: 'nginx'
+          }, {
+            id: 'iis',
+            name: 'IIS'
           }]
         }, {
           id: 'docker',
@@ -150,9 +202,28 @@ export class SkillsComponent implements AfterViewInit {
             id: 'cpp',
             name: 'C++'
           }, {
+            id: 'vb',
+            name: 'Visual Basic'
+          }, {
+            id: 'python',
+            name: 'Python'
+          }, {
+            id: 'delphi',
+            name: 'Delphi'
+          }, {
             id: 'php',
             name: 'PHP'
           }]
+        }, {
+          id: 'vcs',
+          name: 'Version Control Systems',
+          children: [{
+            id: 'git',
+            name: 'Git'
+          }, {
+            id: 'tfs',
+            name: 'Team Foundation Server'
+          }],
         }, {
           id: 'frameworks',
           name: 'Frameworks and Libraries',
@@ -210,11 +281,27 @@ export class SkillsComponent implements AfterViewInit {
           id: 'web',
           name: 'Web Development',
           children: [{
+            id: 'webpack',
+            name: 'Webpack'
+          }, {
+            id: 'webcomponents',
+            name: 'Web Components (Isolated and pluggable)'
+          }, {
             id: 'ng',
-            name: 'Angular & angular.js'
+            name: 'Angular & angular.js',
+            children: [{
+              id: 'ssr',
+              name: 'Server-Side Rendering'
+            }, {
+              id: 'csr',
+              name: 'Client-Side Rendering'
+            }]
           }, {
             id: 'vue',
             name: 'VueJS'
+          }, {
+            id: 'react',
+            name: 'React / Preact'
           }, {
             id: 'wordpress',
             name: 'Wordpress'

@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'getPathCoordinates'
 })
 export class GetPathCoordinatesPipe implements PipeTransform {
-  public transform(path: HTMLElement, offset: number, isRelativeValue: boolean = false): { left: string, top: string } {
+  public transform(path: HTMLElement, offset: number, isRelativeValue: boolean = false, additionalStyles?: { [index: string]: string }): { left: string, top: string } {
     const svgPath = path as Element as SVGPathElement;
     const totalLength = svgPath.getTotalLength();
     const length = isRelativeValue
@@ -21,6 +21,7 @@ export class GetPathCoordinatesPipe implements PipeTransform {
     return {
       left: `${x}px`,
       top: `${y}px`,
+      ...(additionalStyles || {})
     };
   }
 }
