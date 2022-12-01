@@ -7,8 +7,8 @@
   <img src="./assets/images/me.png"  />
 </div>
 <div class="sub-headline">
-  <span [typeSpeed]="wasOpened ? 0 : 10" [startDelay]="4000" [hideCursorOnComplete]="true" [hideCursorDelay]="0" typingAnimation>Your Full-Stack Software Engineer.</span>
+  <span [typeSpeed]="wasOpened ? 0 : 10" [startDelay]="3000" [hideCursorOnComplete]="true" [hideCursorDelay]="0" typingAnimation>Your Full-Stack Software Engineer.</span>
 </div>
-<div class="links">
+<div class="links" [ngClass]="{'--force-visibility': wasOpened }">
   <button class="button" [routerLink]="'/about-me'">Learn more!</button>
 </div>

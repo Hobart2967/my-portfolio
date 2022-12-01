@@ -83,6 +83,7 @@ home {
       opacity: 1;
     }
   }
+
   .links {
     margin-top: 4vh;
     text-align: center;
@@ -90,6 +91,12 @@ home {
     animation: fade-in ease-in 0.5s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
-    animation-delay: 3s;
+    animation-delay: 3.5s;
+
+    &.--force-visibility {
+      animation: none;
+      opacity: 1;
+    }
+
   }
 }
