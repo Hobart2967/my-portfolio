@@ -40,7 +40,10 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/brands.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/solid.css"
             ],
             "scripts": []
           },
