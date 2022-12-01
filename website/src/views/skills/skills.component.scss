@@ -1,3 +1,11 @@
+
+.go {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000
+}
+
 .skills {
   &__node-label {
     display: block;

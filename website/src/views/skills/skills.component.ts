@@ -132,6 +132,9 @@ export class SkillsComponent implements AfterViewInit {
           id: 'architecture',
           name: 'Software Architecture'
         }, {
+          id: 'ausbilderschein',
+          name: 'Instructors Certificate (AEVO, IHK Cologne)'
+        }, {
           id: 'programming-languages',
           name: 'Programming & Script languages',
           children: [{
