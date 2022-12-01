@@ -1,28 +1,44 @@
-<div class="career__path__info__station"
-[ngStyle]="path | getPathCoordinates:station.atPath:true"
-[ngClass]="{ 'career__path__info__station--force-visibility': showImmediately}">
-  <div class="bullet"
-       (click)="openStationInfoModal()"
-       [ngClass]="{ 'bullet--visible': path | isVisibleAt:station.atPath:true | async}"></div>
-  <div class="career__path__info__station__details"
-      [ngClass]="{ 'career__path__info__station__details--visible': path | isVisibleAt:station.atPath:true | async}">
-    <div class="station__job">
-      <b [innerText]="station.job"></b>
-    </div>
+<div
+  #mainDiv
+  class="career__path__info__station"
+  [ngStyle]="path | getPathCoordinates:station.atPath:true:{ 'z-index': (isHovered | async) ? '30000' : undefined }"
+  [ngClass]="{ 'career__path__info__station--force-visibility': showImmediately}">
+  <div
+    class="bullet"
+    (mouseenter)="setIsBulletHovered(true)"
+    (mouseleave)="setIsBulletHovered(false)"
+    (click)="openStationInfoModal()"
+    [ngClass]="{ 'bullet--visible': path | isVisibleAt:station.atPath:true | async}">
   </div>
-  <div class="station__job__meta">
-    <div [innerText]="station.companyName" class="station__company"></div>
-    <div class="station__time-span">
-      <span [innerText]="station.start.month.toString().padStart(2, '0')"></span>
-      <span>/</span>
-      <span [innerText]="station.start.year"></span>
-      <span> - </span>
-      <span [innerText]="station.end.month.toString().padStart(2, '0')"></span>
-      <span>/</span>
-      <span [innerText]="station.end.year"></span>
+  <div
+    class="station__job__shadow"
+    (click)="openStationInfoModal()"
+    (mouseenter)="setIsDetailsHovered(true)"
+    (mouseleave)="setIsDetailsHovered(false)"
+    [ngStyle]="path | getPathCoordinates:station.atPath:true | transformToMaxWidth"
+    [ngClass]="{ 'station__job__shadow--visible': path | isVisibleAt:station.atPath:true | async}">
+    <div
+      class="station__job__details"
+      [ngStyle]="path | getPathCoordinates:station.atPath:true | transformToMaxWidth">
+      <div class="station__job" (click)="openStationInfoModal()">
+        <b [innerText]="station.job"></b>
+      </div>
     </div>
-  </div>
-  <div class="station__job__meta__shadow">
-
+    <div
+      class="station__job__meta"
+      [ngStyle]="path | getPathCoordinates:station.atPath:true | transformToMaxWidth"
+      [@grow]
+      *ngIf="isHovered | async">
+      <div [innerText]="station.companyName" class="station__company"></div>
+      <div class="station__time-span">
+        <span [innerText]="station.start.month.toString().padStart(2, '0')"></span>
+        <span>/</span>
+        <span [innerText]="station.start.year"></span>
+        <span> - </span>
+        <span [innerText]="station.end.month.toString().padStart(2, '0')"></span>
+        <span>/</span>
+        <span [innerText]="station.end.year"></span>
+      </div>
+    </div>
   </div>
 </div>

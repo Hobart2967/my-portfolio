@@ -2,8 +2,7 @@
 
 home {
   display: block;
-  padding: 14vh;
-  margin: 0 auto;
+  margin: 14vh auto;
   max-width: 1024px;
 
   h1 { margin-top: 60px; }
@@ -13,10 +12,6 @@ home {
 
     text-align: center;
     font-size: 5vh;
-
-    @media (max-width: 768px) {
-      font-size: 4vh;
-    }
   }
 
   .profile-image {
@@ -90,6 +85,6 @@ home {
     animation: fade-in ease-in 0.5s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
-    animation-delay: 3s;
+    animation-delay: 5s;
   }
 }

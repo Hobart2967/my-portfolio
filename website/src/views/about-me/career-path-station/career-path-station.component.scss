@@ -31,71 +31,106 @@ $componentName: 'career-path-station';
 
     }
 
-    &__details {
-      margin: 0px 30px;
-      padding: 8px;
-      background: #333333;
-      border: 2px solid rgba(16, 84, 16, 0.8);
-      text-align: left;
-
-      position: relative;
-
-      opacity: 0;
-
-      &--visible {
-        animation: #{$componentName}__jump-in ease-in-out 0.4s;
-        animation-fill-mode: forwards;
-        animation-iteration-count: 1;
-      }
-    }
-
-
-    @keyframes #{$componentName}__jump-in{
-      0%{
-        transform: scale(0);
-        opacity: 0.3;
-      }
-      50%{
-        transform: scale(1.5);
-        opacity: 1;
-      }
-      100%{
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-
-    .station__job__meta {
-      margin: 0px 30px;
-      padding: 8px;
-      background: #333333;
-      border: 2px solid rgba(16, 84, 16, 0.8);
-      text-align: left;
-      position: relative;
-      border-top: 0;
-      opacity: 0;
-      top: -10px;
-      transition: opacity .3s ease-in-out;
-      z-index: 2000;
-      pointer-events: none;
-      margin-top: -1px;
-
+    .station__job {
       &__shadow {
-        position: absolute;
-        top: 16px;
+        position: relative;
+
+        top: 0;
         bottom: 10px;
         right: 0;
         left: 0;
+        cursor: pointer;
         display: flex;
         margin: 0 30px;
         opacity: 0;
         z-index: 20001;
-        pointer-events: none;
-        box-shadow: 0px 1px 6px rgb(177 234 177 / 80%);
+        box-shadow: 0px 1px 6px rgb(177 234 177 / 0%);
         transition: opacity 0.3s ease-in-out;
+        display: flex;
+        flex-flow: column;
+
+        &--visible {
+          animation-name: #{$componentName}__jump-in;
+          animation-timing-function: ease-in-out;
+          animation-duration: 0.4s;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
+        }
+
+        @media (max-width: 768px) {
+          margin-left: -10%;
+        }
+
+
+        .station__job__details {
+          margin: 0px;
+          padding: 8px;
+          background: #333333;
+          border: 2px solid rgba(16, 84, 16, 0.8);
+          text-align: left;
+
+          @media (max-width: 768px) {
+            margin-left: -10%;
+
+            .station__job {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+          }
+        }
+
+        .station__job__meta {
+          margin: 0;
+          overflow: hidden;
+          position: relative;
+          padding: 0 8px 8px 8px;
+          background: #333333;
+          border: 2px solid rgba(16, 84, 16, 0.8);
+          text-align: left;
+          border-top: 0;
+          transition: opacity .3s ease-in-out;
+          z-index: 2000;
+          pointer-events: none;
+          margin-top: -10px;
+          @media (max-width: 768px) {
+            margin-left: -10%;
+          }
+        }
+
+
+        @keyframes #{$componentName}__jump-in-mobile{
+          0%{
+            transform: scale(0);
+            opacity: 0.3;
+          }
+          50%{
+            transform: scale(1.5);
+            opacity: 0.7;
+          }
+          100%{
+            transform: scale(1);
+            opacity: 0.7;
+          }
+        }
+        @keyframes #{$componentName}__jump-in{
+          0%{
+            transform: scale(0);
+            opacity: 0.3;
+          }
+          50%{
+            transform: scale(1.5);
+            opacity: 1;
+          }
+          100%{
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
       }
     }
+
+
 
     .bullet {
       display: block;
@@ -128,16 +163,11 @@ $componentName: 'career-path-station';
         width: 8px;
       }
 
-      &:hover {
-        &:before {
-          border-color: rgb(216, 216, 216);;
-        }
-        ~ .station__job__meta{
-          opacity: 1;
-
-          &__shadow {
-            opacity: 1;
-          }
+      &:hover {.station__job__meta {
+        opacity: 1;
+      }
+        ~ .station__job__shadow {
+          box-shadow: 0px 1px 6px rgb(177 234 177 / 80%);
         }
       }
     }

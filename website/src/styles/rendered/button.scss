@@ -1,16 +1,25 @@
-button, .button {
-  border-radius: 3px;
+%button {
 
-  border-radius: 3px;
   background: #1a801a;
   font-size: 16px;
   border: 2px solid #1d941d;
   padding: 8px 24px;
   color: var(--color-button-foreground);
 
+
   &:hover {
     cursor: pointer;
     background-color: var(--color-button-border);
     color: var(--color-button-hover-foreground);
+  }
+}
+
+button, .button, a.button {
+  @extend %button;
+}
+
+a.button {
+  &, &:visited, &:focus, &:active {
+    @extend %button;
   }
 }

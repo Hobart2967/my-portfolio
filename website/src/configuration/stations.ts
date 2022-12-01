@@ -136,7 +136,7 @@ export const stations: CareerStation[] = [{
     year: 2018,
   },
   end: {
-    month: new Date(Date.now()).getMonth(),
+    month: new Date(Date.now()).getMonth() + 1,
     year: new Date(Date.now()).getFullYear()
   }
 }];

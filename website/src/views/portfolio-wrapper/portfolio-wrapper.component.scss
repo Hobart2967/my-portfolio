@@ -11,8 +11,19 @@ portfolio-wrapper {
     main {
       flex: 1 1;
       margin-left: 128px;
-      height: 100vh;
-      overflow: auto;
+
+      @media (max-width: 768px) {
+        margin-left: 0;
+      }
+    }
+
+    footer {
+      background: rgba(128, 128, 128, 0.1);
+      display: flex;
+      margin: 0 auto;
+      padding: 60px;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
