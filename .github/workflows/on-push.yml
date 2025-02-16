@@ -3,6 +3,8 @@ name: Update Website
 
 jobs:
   deploy:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,6 +18,8 @@ jobs:
           cd github-pages-repo
           rm -rf *
       - run: |
+          git config --global user.name 'hobart2967-bot'
+          git config --global user.email 'hobart2967@users.noreply.github.com'
           cp -r my-portfolio/website/dist/website/* github-pages-repo
           cd github-pages-repo
           git commit -am "Update from my-portfolio"
