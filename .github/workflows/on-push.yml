@@ -5,10 +5,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
+      - uses: actions/checkout@v4
         with:
           path: my-portfolio
-      - uses: actions/checkout
+      - uses: actions/checkout@v4
         with:
           repository: hobart2967/hobart2967.github.io
           path: github-pages-repo
