@@ -42,6 +42,9 @@ export class SkillsComponent implements AfterViewInit {
         children: [{
           id: 'scrum',
           name: 'Scrum'
+        },{
+          id: 'scrumban',
+          name: 'ScrumBan'
         }, {
           id: 'kanban',
           name: 'Kanban'
@@ -91,6 +94,10 @@ export class SkillsComponent implements AfterViewInit {
           {
             name: 'Sqlite3',
             id: 'sqlite3',
+          },
+          {
+            name: 'Postgres',
+            id: 'postgres',
           },
           {
             name: 'MS SQL',
@@ -160,6 +167,33 @@ export class SkillsComponent implements AfterViewInit {
           }, {
             id: 'dynamodb',
             name: 'Dynamodb'
+          }, {
+            id: 'sqs',
+            name: 'SQS'
+          }, {
+            id: 'ses',
+            name: 'SES'
+          }, {
+            id: 'ec2',
+            name: 'EC2'
+          }, {
+            id: 'ECR',
+            name: 'ECR'
+          }, {
+            id: 'ECS',
+            name: 'ECS'
+          }, {
+            id: 'EventBridge',
+            name: 'EventBridge'
+          }, {
+            id: 'LambdaStepFunctions',
+            name: 'Lambda Step Functions'
+          }, {
+            id: 'Athena',
+            name: 'Athena'
+          }, {
+            id: 'SSM',
+            name: 'SSM'
           }]
         }]
       }, {
