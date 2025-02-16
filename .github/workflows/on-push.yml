@@ -14,8 +14,7 @@ jobs:
           path: github-pages-repo
       - run: |
           cd github-pages-repo
-          find . -type f ! -name 'CNAME' -delete
-          find . -type d -exec rm -rf {}\;
+          find . ! -name "CNAME" -exec rm -r {} \;
       - run: |
           cp -r my-portfolio/website/dist/website/* github-pages-repo
           cd github-pages-repo
