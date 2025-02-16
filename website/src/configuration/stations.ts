@@ -136,6 +136,30 @@ export const stations: CareerStation[] = [{
     year: 2018,
   },
   end: {
+    month: 6,
+    year: 2023
+  }
+}, {
+  companyName: 'Belonio GmbH',
+  job: 'Senior Full-Stack Software Engineer',
+  atPath: 80.5 / 100,
+  description:
+`At Belonio, I was part of a small full stack product team, including a Product Owner, UX/UI and Developers. There, me and my team were responsible for maintaining and implementing the core business processes of Belonio. Within that time, my last projects included, but were not limited to:
+
+- Technical implementation and drafting of additional internal billing processes
+- Adaption of benefit payment processes
+- Maintenance and centralization of development tools, like CI/CD using GitHub Actions
+- Drafting and implementation of complex infrastructures using Amazon Web Services, e.g. Lambda, DynamoDB, S3, CloudFront, API Gateway, etc.
+- Maintain and improve essential processes within the Java / SpringBoot based core application
+- Implement and maintain complex system & process management frontends using Angular
+- Third-Level application support together with the customer support team
+- Design agile team processes, tech (debt) strategies & workflows
+`,
+  start: {
+    month: 7,
+    year: 2023,
+  },
+  end: {
     month: new Date(Date.now()).getMonth() + 1,
     year: new Date(Date.now()).getFullYear()
   }

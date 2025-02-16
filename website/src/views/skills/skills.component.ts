@@ -34,6 +34,16 @@ export class SkillsComponent implements AfterViewInit {
       vy: 0,
       vz: 0,
       children: [{
+        id: 'other',
+        name: 'Other',
+        vx: 80,
+        vz: 0,
+        collapsed: false,
+        children: [{
+          id: 'Godot',
+          name: 'Godot Game Development'
+        }]
+      },{
         id: 'methods',
         name: 'Methods',
         vx: 50,
@@ -78,6 +88,9 @@ export class SkillsComponent implements AfterViewInit {
           children: [{
             name: 'MySQL / MariaDB',
             id: 'MySQL',
+          },{
+            name: 'PostgreSQL',
+            id: 'PostgreSQL',
           },
           {
             name: 'Dynamodb',
@@ -164,6 +177,18 @@ export class SkillsComponent implements AfterViewInit {
           }, {
             id: 'lambda',
             name: 'Lambda'
+          }, {
+            id: 'rds',
+            name: 'RDS'
+          }, {
+            id: 'cloudformation',
+            name: 'CloudFormation'
+          }, {
+            id: 'iam',
+            name: 'IAM'
+          }, {
+            id: 'waf',
+            name: 'WAF'
           }, {
             id: 'dynamodb',
             name: 'Dynamodb'
