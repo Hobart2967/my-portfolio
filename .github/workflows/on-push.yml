@@ -1,0 +1,24 @@
+on: push
+name: Update Website
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout
+        with:
+          path: my-portfolio
+      - uses: actions/checkout
+        with:
+          repository: hobart2967/hobart2967.github.io
+          path: github-pages-repo
+      - run: |
+          cd github-pages-repo
+          find . -type f ! -name 'CNAME' -delete
+          find . -type d -exec rm -rf {}\;
+      - run: |
+          cp -r my-portfolio/website/dist/website/* github-pages-repo
+          cd github-pages-repo
+          git commit -am "Update from my-portfolio"
+          git push
+
