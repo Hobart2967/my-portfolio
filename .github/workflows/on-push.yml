@@ -18,11 +18,13 @@ jobs:
           cd github-pages-repo
           rm -rf *
       - run: |
-          git config --unset-all http.https://github.com/.extraheader
+
           git config --global user.name 'hobart2967-bot'
           git config --global user.email 'hobart2967@users.noreply.github.com'
           cp -r my-portfolio/website/dist/website/* github-pages-repo
           cd github-pages-repo
+          git config --unset-all http.https://github.com/.extraheader
           git commit -am "Update from my-portfolio"
+
           git push
 
