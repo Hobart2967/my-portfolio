@@ -23,7 +23,6 @@ jobs:
           git config --global user.email 'hobart2967@users.noreply.github.com'
           cp -r my-portfolio/website/dist/website/* github-pages-repo
           cd github-pages-repo
-          git config --unset-all http.https://github.com/.extraheader
           git commit -am "Update from my-portfolio"
 
           git push
